@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstExistingDatabase", "CodeFirstExistingDatabase\CodeFirstExistingDatabase.csproj", "{59C604CB-5B4A-4FF4-8190-5E2AC8755BBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstExistingDatabase2", "CodeFirstExistingDatabase2\CodeFirstExistingDatabase2.csproj", "{6D624FBA-D09E-4ED9-98C5-E0E37F85D7B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59C604CB-5B4A-4FF4-8190-5E2AC8755BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C604CB-5B4A-4FF4-8190-5E2AC8755BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C604CB-5B4A-4FF4-8190-5E2AC8755BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C604CB-5B4A-4FF4-8190-5E2AC8755BBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D624FBA-D09E-4ED9-98C5-E0E37F85D7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D624FBA-D09E-4ED9-98C5-E0E37F85D7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D624FBA-D09E-4ED9-98C5-E0E37F85D7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D624FBA-D09E-4ED9-98C5-E0E37F85D7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9422D986-CC90-41B8-95FC-D0BE49C5BC60}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Pluto.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Coursees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="FullPrice" Type="real" Nullable="false" />
+          <Property Name="Author_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="TagCoursees">
+          <Key>
+            <PropertyRef Name="Tag_Id" />
+            <PropertyRef Name="Coursee_Id" />
+          </Key>
+          <Property Name="Tag_Id" Type="int" Nullable="false" />
+          <Property Name="Coursee_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_Coursees_dbo_Authors_Author_Id">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
+          <End Role="Coursees" Type="Self.Coursees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Coursees">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id">
+          <End Role="Coursees" Type="Self.Coursees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TagCoursees" Type="Self.TagCoursees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coursees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagCoursees">
+              <PropertyRef Name="Coursee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_TagCoursees_dbo_Tags_Tag_Id">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TagCoursees" Type="Self.TagCoursees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TagCoursees">
+              <PropertyRef Name="Tag_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PlutoStoreContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coursees" EntityType="Self.Coursees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagCoursees" EntityType="Self.TagCoursees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Coursees_dbo_Authors_Author_Id" Association="Self.FK_dbo_Coursees_dbo_Authors_Author_Id">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Coursees" EntitySet="Coursees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id" Association="Self.FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id">
+            <End Role="Coursees" EntitySet="Coursees" />
+            <End Role="TagCoursees" EntitySet="TagCoursees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_TagCoursees_dbo_Tags_Tag_Id" Association="Self.FK_dbo_TagCoursees_dbo_Tags_Tag_Id">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="TagCoursees" EntitySet="TagCoursees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Pluto" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Coursees" Relationship="Self.FK_dbo_Coursees_dbo_Authors_Author_Id" FromRole="Authors" ToRole="Coursees" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="FullPrice" Type="Single" Nullable="false" />
+          <Property Name="Author_Id" Type="Int32" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_dbo_Coursees_dbo_Authors_Author_Id" FromRole="Coursees" ToRole="Authors" />
+          <NavigationProperty Name="Tags" Relationship="Self.TagCoursees" FromRole="Coursees" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Coursees" Relationship="Self.TagCoursees" FromRole="Tags" ToRole="Coursees" />
+        </EntityType>
+        <Association Name="FK_dbo_Coursees_dbo_Authors_Author_Id">
+          <End Role="Authors" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="Coursees" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Coursees">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TagCoursees">
+          <End Role="Coursees" Type="Self.Course" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="PlutoContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Coursees" EntityType="Self.Course" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <AssociationSet Name="FK_dbo_Coursees_dbo_Authors_Author_Id" Association="Self.FK_dbo_Coursees_dbo_Authors_Author_Id">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Coursees" EntitySet="Coursees" />
+          </AssociationSet>
+          <AssociationSet Name="TagCoursees" Association="Self.TagCoursees">
+            <End Role="Coursees" EntitySet="Coursees" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PlutoStoreContainer" CdmEntityContainer="PlutoContext">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="Pluto.Author">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coursees">
+            <EntityTypeMapping TypeName="Pluto.Course">
+              <MappingFragment StoreEntitySet="Coursees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="FullPrice" ColumnName="FullPrice" />
+                <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="Pluto.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TagCoursees" TypeName="Pluto.TagCoursees" StoreEntitySet="TagCoursees">
+            <EndProperty Name="Coursees">
+              <ScalarProperty Name="Id" ColumnName="Coursee_Id" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="Id" ColumnName="Tag_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

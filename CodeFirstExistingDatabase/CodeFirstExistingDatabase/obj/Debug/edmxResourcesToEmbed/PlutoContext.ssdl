@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pluto.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Coursees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="FullPrice" Type="real" Nullable="false" />
+    <Property Name="Author_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="TagCoursees">
+    <Key>
+      <PropertyRef Name="Tag_Id" />
+      <PropertyRef Name="Coursee_Id" />
+    </Key>
+    <Property Name="Tag_Id" Type="int" Nullable="false" />
+    <Property Name="Coursee_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_Coursees_dbo_Authors_Author_Id">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
+    <End Role="Coursees" Type="Self.Coursees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coursees">
+        <PropertyRef Name="Author_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id">
+    <End Role="Coursees" Type="Self.Coursees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TagCoursees" Type="Self.TagCoursees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coursees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TagCoursees">
+        <PropertyRef Name="Coursee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TagCoursees_dbo_Tags_Tag_Id">
+    <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TagCoursees" Type="Self.TagCoursees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tags">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TagCoursees">
+        <PropertyRef Name="Tag_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PlutoStoreContainer">
+    <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Coursees" EntityType="Self.Coursees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TagCoursees" EntityType="Self.TagCoursees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Coursees_dbo_Authors_Author_Id" Association="Self.FK_dbo_Coursees_dbo_Authors_Author_Id">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Coursees" EntitySet="Coursees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id" Association="Self.FK_dbo_TagCoursees_dbo_Coursees_Coursee_Id">
+      <End Role="Coursees" EntitySet="Coursees" />
+      <End Role="TagCoursees" EntitySet="TagCoursees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TagCoursees_dbo_Tags_Tag_Id" Association="Self.FK_dbo_TagCoursees_dbo_Tags_Tag_Id">
+      <End Role="Tags" EntitySet="Tags" />
+      <End Role="TagCoursees" EntitySet="TagCoursees" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

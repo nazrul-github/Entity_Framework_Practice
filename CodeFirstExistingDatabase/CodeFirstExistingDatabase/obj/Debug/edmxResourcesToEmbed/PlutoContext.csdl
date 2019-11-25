@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Pluto" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Coursees" Relationship="Self.FK_dbo_Coursees_dbo_Authors_Author_Id" FromRole="Authors" ToRole="Coursees" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="FullPrice" Type="Single" Nullable="false" />
+    <Property Name="Author_Id" Type="Int32" />
+    <NavigationProperty Name="Author" Relationship="Self.FK_dbo_Coursees_dbo_Authors_Author_Id" FromRole="Coursees" ToRole="Authors" />
+    <NavigationProperty Name="Tags" Relationship="Self.TagCoursees" FromRole="Coursees" ToRole="Tags" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Coursees" Relationship="Self.TagCoursees" FromRole="Tags" ToRole="Coursees" />
+  </EntityType>
+  <Association Name="FK_dbo_Coursees_dbo_Authors_Author_Id">
+    <End Role="Authors" Type="Self.Author" Multiplicity="0..1" />
+    <End Role="Coursees" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coursees">
+        <PropertyRef Name="Author_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TagCoursees">
+    <End Role="Coursees" Type="Self.Course" Multiplicity="*" />
+    <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="PlutoContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="Coursees" EntityType="Self.Course" />
+    <EntitySet Name="Tags" EntityType="Self.Tag" />
+    <AssociationSet Name="FK_dbo_Coursees_dbo_Authors_Author_Id" Association="Self.FK_dbo_Coursees_dbo_Authors_Author_Id">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Coursees" EntitySet="Coursees" />
+    </AssociationSet>
+    <AssociationSet Name="TagCoursees" Association="Self.TagCoursees">
+      <End Role="Coursees" EntitySet="Coursees" />
+      <End Role="Tags" EntitySet="Tags" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

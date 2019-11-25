@@ -1,0 +1,12 @@
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.exe.config
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.exe
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\DatabaseFirstDemo.pdb
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.dll
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.SqlServer.dll
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.xml
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\bin\Debug\EntityFramework.SqlServer.xml
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.csprojAssemblyReference.cache
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.csproj.CoreCompileInputs.cache
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.csproj.CopyComplete
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.exe
+G:\VS 2017 Project\#Enttiy Framework\Database First Demo\DatabaseFirstDemo\DatabaseFirstDemo\obj\Debug\DatabaseFirstDemo.pdb
