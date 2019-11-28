@@ -56,17 +56,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cover.cs" />
+    <Compile Include="EntityConfigaration\CourseConfigaration.cs" />
     <Compile Include="Migrations\201911271928098_InitialModelMigration.cs" />
     <Compile Include="Migrations\201911271928098_InitialModelMigration.designer.cs">
       <DependentUpon>201911271928098_InitialModelMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911280243526_CourseColumnFluentAPIAdded.cs" />
+    <Compile Include="Migrations\201911280243526_CourseColumnFluentAPIAdded.designer.cs">
+      <DependentUpon>201911280243526_CourseColumnFluentAPIAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tag.cs" />
-    <Compile Include="tbl_Author.cs" />
-    <Compile Include="tbl_Course.cs" />
+    <Compile Include="Author.cs" />
+    <Compile Include="Course.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -76,7 +81,11 @@
     <EmbeddedResource Include="Migrations\201911271928098_InitialModelMigration.resx">
       <DependentUpon>201911271928098_InitialModelMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911280243526_CourseColumnFluentAPIAdded.resx">
+      <DependentUpon>201911280243526_CourseColumnFluentAPIAdded.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

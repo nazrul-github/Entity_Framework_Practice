@@ -6,18 +6,18 @@ namespace QueriesUsingLinq
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tbl_Author
+    public partial class Author
     {
        
-        public tbl_Author()
+        public Author()
         {
-            tbl_Course = new HashSet<tbl_Course>();
+            Courses = new HashSet<Course>();
         }
 
         public int Id { get; set; }
       
         public string Name { get; set; }
     
-        public virtual ICollection<tbl_Course> tbl_Course { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

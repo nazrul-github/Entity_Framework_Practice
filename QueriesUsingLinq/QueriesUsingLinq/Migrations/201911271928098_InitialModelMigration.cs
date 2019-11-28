@@ -15,11 +15,11 @@
                         CoverName = c.String(),
                     })
                 .PrimaryKey(t => t.CoverId)
-                .ForeignKey("dbo.tbl_Course", t => t.CoverId)
+                .ForeignKey("dbo.Course", t => t.CoverId)
                 .Index(t => t.CoverId);
             
             CreateTable(
-                "dbo.tbl_Course",
+                "dbo.Course",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -31,11 +31,11 @@
                         CoverId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.tbl_Author", t => t.AuthorId)
+                .ForeignKey("dbo.Author", t => t.AuthorId)
                 .Index(t => t.AuthorId);
             
             CreateTable(
-                "dbo.tbl_Author",
+                "dbo.Author",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -56,13 +56,13 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.tbl_Course", "AuthorId", "dbo.tbl_Author");
-            DropForeignKey("dbo.Covers", "CoverId", "dbo.tbl_Course");
-            DropIndex("dbo.tbl_Course", new[] { "AuthorId" });
+            DropForeignKey("dbo.Course", "AuthorId", "dbo.Author");
+            DropForeignKey("dbo.Covers", "CoverId", "dbo.Course");
+            DropIndex("dbo.Course", new[] { "AuthorId" });
             DropIndex("dbo.Covers", new[] { "CoverId" });
             DropTable("dbo.Tags");
-            DropTable("dbo.tbl_Author");
-            DropTable("dbo.tbl_Course");
+            DropTable("dbo.Author");
+            DropTable("dbo.Course");
             DropTable("dbo.Covers");
         }
     }

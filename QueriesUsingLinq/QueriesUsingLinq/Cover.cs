@@ -12,6 +12,6 @@ namespace QueriesUsingLinq
 
         public string CoverName { get; set; }
 
-        public virtual tbl_Course tbl_Course { get; set; }
+        public virtual Course Course { get; set; }
     }
 }

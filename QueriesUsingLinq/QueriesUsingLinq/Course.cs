@@ -6,7 +6,7 @@ namespace QueriesUsingLinq
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tbl_Course
+    public partial class Course
     {
         public int Id { get; set; }
 
@@ -26,6 +26,7 @@ namespace QueriesUsingLinq
 
         public virtual Cover Cover { get; set; }
 
-        public virtual tbl_Author tbl_Author { get; set; }
+        public virtual Author Author { get; set; }
+        public ICollection<Tag> Tags { get; set; }
     }
 }
